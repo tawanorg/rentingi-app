@@ -3,12 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'expo';
 import MapScreen from '../screens/MapScreen';
-import LinksScreen from '../screens/LinksScreen';
+import ChatScreen from '../screens/ChatScreen';
+import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Colors from '../constants/Colors';
 
 const HomeStack = createStackNavigator({
-  Links: LinksScreen,
+  Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -29,16 +30,11 @@ const MapStack = createStackNavigator({
 MapStack.navigationOptions = {
   tabBarLabel: () => null,
   tabBarIcon: ({ focused }) => (
-    <View style={styles.menu}>
-      <Icon.Feather
-        name="search"
-        size={26}
-        color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      />
-      <View style={styles.alert}>
-        <Text style={{ color: '#FFF', fontSize: 10, }}>1.2k</Text>
-      </View>
-    </View>
+    <Icon.Feather
+      name="search"
+      size={26}
+      color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+    />
   ),
 };
 
@@ -57,11 +53,11 @@ PostStack.navigationOptions = {
   ),
 };
 
-const NotificationStack = createStackNavigator({
-  Settings: SettingsScreen,
+const ChatStack = createStackNavigator({
+  Chat: ChatScreen,
 });
 
-NotificationStack.navigationOptions = {
+ChatStack.navigationOptions = {
   tabBarLabel: () => null,
   tabBarIcon: ({ focused }) => (
     <View style={styles.menu}>
@@ -71,7 +67,7 @@ NotificationStack.navigationOptions = {
         color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
       <View style={styles.alert}>
-        <Text style={{ color: '#FFF', fontSize: 10, }}>3</Text>
+        <Text style={{ color: '#FFF', fontSize: 10, }} />
       </View>
     </View>
   ),
@@ -101,11 +97,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     backgroundColor: '#FF0000',
     color: '#FFF',
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-    top: -8,
-    right: -4,
-    borderRadius: 50,
+    width: 10,
+    height: 10,
+    top: 0,
+    right: -1,
+    borderRadius: 10 / 2,
   },
 })
 
@@ -113,6 +109,6 @@ export default createBottomTabNavigator({
   HomeStack,
   MapStack,
   PostStack,
-  NotificationStack,
+  ChatStack,
   SettingsStack,
 });
