@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import { Constants } from 'expo';
 import { Icon } from 'expo';
 import SearchInput from '../SearchInput';
 import Header from '../Header';
@@ -18,21 +17,14 @@ class SearchHeader extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <View>
         <Header style={styles.headerContainer}>
           <SearchInput style={{ flex: 1 }} />
-          <TouchableOpacity onPress={() => null} style={[styles.searchFilterButton, { marginRight: 5 }]}>
+          <TouchableOpacity onPress={() => null} style={styles.searchFilterButton}>
             <Icon.AntDesign
               name="filter"
               color="#333"
               size={24}
-              style={{
-                position: 'absolute',
-                top: 6,
-                button: 0,
-                left: 6,
-                right: 0,
-              }}
             />
           </TouchableOpacity>
         </Header>
@@ -42,7 +34,7 @@ class SearchHeader extends Component {
             <Text style={styles.searchSaveButton}>Save</Text>
           </TouchableOpacity>
         </View>
-      </React.Fragment>
+      </View>
     );
   }
 }
@@ -61,7 +53,8 @@ const styles = StyleSheet.create({
     height: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'relative'
+    position: 'relative',
+    marginLeft: 5
   },
   searchResultContainer: {
     padding: 10,

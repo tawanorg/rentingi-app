@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 
 export default class SearchInput extends React.Component {
   render() {
-    const { style } = this.props;
+    const { style, type, value } = this.props;
+    const Container = type === 'input' ? View : TouchableOpacity
+
     return (
-      <TouchableOpacity style={[styles.container, style]}>
+      <Container style={[styles.container, style]}>
         <Icon.FontAwesome
           name="search"
           size={18}
@@ -15,10 +17,19 @@ export default class SearchInput extends React.Component {
             marginLeft: 10,
           }}
         />
-        <Text style={styles.searchInput}>
-          Search for your stay
-        </Text>
-      </TouchableOpacity>
+        {type === 'input' ? (
+          <TextInput 
+            value={value} 
+            placeholder="Search for your messages" 
+            style={[styles.searchInput, { color: '#333333' }]}
+            placeholderTextColor={'#CCCCCC'}
+          />
+        ) : (
+          <Text style={styles.searchInput}>
+            Search for your stay
+          </Text>
+        )}
+      </Container>
     );
   }
 }
@@ -29,10 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F1F1F1',
     borderRadius: 30,
-    padding: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 3,
   },
   searchInput: {
-    paddingLeft: 10,
-    color: '#CCC'
+    color: '#CCC',
+    flex: 1,
+    marginHorizontal: 10,
   },
 });

@@ -11,6 +11,15 @@ export default class HomeScreen extends React.Component {
     header: <HomeHeader />,
   };
 
+  state = { isRefreshing: false };
+
+  _refreshRequest = () => {
+    this.setState({ isRefreshing: true });
+    setTimeout(() => {
+      this.setState({ isRefreshing: false });
+    }, 1000);
+  };
+
   overrideRenderItem = ({ item, index, section: { title, data } }) => <Text key={index}>Override{item}</Text>
 
   render() {
@@ -18,9 +27,10 @@ export default class HomeScreen extends React.Component {
       <View styles={styles.container}>
         <SearchInput style={{ margin: 10 }} />
         <SectionList
+          ListFooterComponent={() => <View style={{ paddingBottom: 60 }} />}
           renderItem={({ item, index, section: { layout } }) => {
             return layout === 'property' ? (
-              <PropertyItem key={index} style={{ marginBottom: 10}} />
+              <PropertyItem key={index} style={{ marginTop: 10}} />
             ) : <SaveSearchItem key={index} noborder={index === 1} />
           }}
           renderSectionHeader={({ index, section: { title, layout }}) => (
@@ -32,7 +42,7 @@ export default class HomeScreen extends React.Component {
           )}
           sections={[
             { title: 'SAVE SEARCHES', layout: null, data: ['item3', 'item4'] },
-            { title: 'PERFECT MATACHES', layout: 'property', data: ['item1', 'item2'] },
+            { title: 'FOUND 2 PERFECT MATACHES', layout: 'property', data: ['item1', 'item2'] },
           ]}
         />
       </View>
@@ -43,7 +53,10 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 200,
-    backgroundColor: '#fff',
+  },
+  cell: {
+    margin: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

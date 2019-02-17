@@ -4,6 +4,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import { Icon } from 'expo';
 import MapScreen from '../screens/MapScreen';
 import ChatScreen from '../screens/ChatScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Colors from '../constants/Colors';
@@ -55,22 +56,37 @@ PostStack.navigationOptions = {
 
 const ChatStack = createStackNavigator({
   Chat: ChatScreen,
+  ChatRoom: ChatRoomScreen,
 });
 
-ChatStack.navigationOptions = {
-  tabBarLabel: () => null,
-  tabBarIcon: ({ focused }) => (
-    <View style={styles.menu}>
-      <Icon.Feather
-        name="message-circle"
-        size={26}
-        color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
-      />
-      <View style={styles.alert}>
-        <Text style={{ color: '#FFF', fontSize: 10, }} />
+ChatStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "ChatRoom") {
+        tabBarVisible = false;
+      } else {
+        tabBarVisible = true;
+      }
+    });
+  }
+
+  return {
+    tabBarVisible,
+    tabBarLabel: () => null,
+    tabBarIcon: ({ focused }) => (
+      <View style={styles.menu}>
+        <Icon.Feather
+          name="message-circle"
+          size={26}
+          color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+        />
+        <View style={styles.alert}>
+          <Text style={{ color: '#FFF', fontSize: 10, }} />
+        </View>
       </View>
-    </View>
-  ),
+    ),
+  }
 };
 
 const SettingsStack = createStackNavigator({

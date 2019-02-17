@@ -36,12 +36,18 @@ const styles = StyleSheet.create({
     padding: 10
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'RubikMedium',
-    color: '#444'
+    color: '#4D4D4D'
   },
-  subtitle: {},
-  desc: {}
+  subtitle: {
+    fontSize: 14,
+    color: '#444444'
+  },
+  desc: {
+    fontSize: 13,
+    color: '#777777'
+  }
 });
 
 export default PropertyItem;

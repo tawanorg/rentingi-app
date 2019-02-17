@@ -1,33 +1,74 @@
+// @flow
+
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
+import ChatItem from '../components/ChatItem';
+var faker = require('faker');
 
-export default class ChatScreen extends React.Component {
+const DATA = Array.from({ length: 50 }).map((_, i) => ({
+  id: `item_${i}`,
+  avatarUrl: faker.fake("{{internet.avatar}}"),
+  name: faker.fake("{{name.firstName}} {{name.lastName}}"),
+  lastMessage: faker.fake("{{lorem.sentence}}"),
+  time: new Date().toTimeString(),
+  isNew: [1, 3, 5, 6].includes(i),
+}));
+
+export default class ChatScreen extends React.PureComponent {
   static navigationOptions = {
     header: () => (
       <Header>
-        <SearchInput />
+        <SearchInput
+          type="input"
+          style={{ flex: 1 }}
+        />
       </Header>
     ),
   };
 
+  _keyExtractor = (item, index) => item.id;
+
+  _renderItem = ({ item }) => (
+    <ChatItem
+      isNew={item.isNew}
+      id={item.id}
+      onPress={() => this.props.navigation.push('ChatRoom', {
+        component: {
+          name: 'NEXT_PAGE',
+          options: {
+            bottomTabs: {
+              visible: false, 
+              animate: false
+            }
+          }
+        },
+        name: item.name
+      })}
+      avatarUrl={item.avatarUrl}
+      name={item.name}
+      message={item.lastMessage}
+      when={item.time}
+      style={styles.chatItem}
+    />
+  );
+
   render() {
     return (
-      <ScrollView 
-        styles={styles.container}
-        contentContainerStyle={{ padding: 10 }}
-      >
-      <View>
-        <View style={styles.chatItemContainer}>
-          <Image style={styles.chatAvatarImage} source={require('../assets/images/avatar.png')} />
-          <View style={styles.chatMessageContainer}>
-            <Text style={styles.chatSenderTitle}>Tawan</Text>
-            <Text style={styles.chatMessage}>Could I do inspection anytime soon?</Text>
+      <FlatList
+        style={styles.container}
+        data={DATA}
+        extraData={this.state}
+        ListHeaderComponent={() => (
+          <View style={{ marginHorizontal: 10, marginTop: 10, marginBottom: 20, flexDirection: 'column' }}>
+            <Text style={styles.chatHeaderTitle}>Chats</Text>
+            <Text style={styles.chatHeaderSubtitle}>You have 3 new messages.</Text>
           </View>
-        </View>
-      </View>
-      </ScrollView>
+        )}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderItem}
+      />
     );
   }
 }
@@ -36,22 +77,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  chatItemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+  chatItem: {
+    padding: 10,
   },
-  chatAvatarImage: {
-    height: 50,
-    width: 50,
+  chatListContainer: {
+    flexDirection: 'column'
   },
-  chatMessageContainer: {
-    paddingLeft: 10,
-  },
-  chatSenderTitle: {
-    fontSize: 14,
+  chatHeaderTitle: {
     fontFamily: 'RubikMedium',
-    color: '#444',
-    marginBottom: 5,
+    color: '#4D4D4D',
+    fontSize: 18,
+    marginBottom: 5
   },
-  chatMessage: {},
+  chatHeaderSubtitle: {
+    color: '#5D5D5D',
+    fontSize: 14,
+  }
 });
