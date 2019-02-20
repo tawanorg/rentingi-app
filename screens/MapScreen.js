@@ -28,11 +28,12 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     
+    this.onLayoutTimer = null;
     this.state = {
       isLoading: false,
       isLayoutMap: true,
-      initialRegion: null,
       data: [],
+      region: null,
     };
 
     this.mapRef = React.createRef();
@@ -41,8 +42,12 @@ export default class HomeScreen extends React.Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.loadSampleData();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.onLayoutTimer);
   }
  
   loadSampleData() {
@@ -74,6 +79,7 @@ export default class HomeScreen extends React.Component {
   }
 
   fitToCoordinates() {
+    this.mapRef.current && 
     this.mapRef.current.fitToCoordinates(
       this.state.data,
       MAP_OPTIONS,
@@ -89,7 +95,7 @@ export default class HomeScreen extends React.Component {
   );
 
   render() {
-    const { isLayoutMap, initialRegion, data, isLoading } = this.state;
+    const { region, isLayoutMap, data, isLoading } = this.state;
     return (
       <View style={styles.container}>
         {
@@ -98,10 +104,9 @@ export default class HomeScreen extends React.Component {
             provider="google"
             ref={this.mapRef}
             showsUserLocation
-            showsCompass
             loadingEnabled={isLoading}
             style={styles.map}
-            onMapReady={() => this.fitToCoordinates()}
+            region={region}
             initialRegion={{
               latitude: -37.83127517166088,
               latitudeDelta: 0.08053526908207687,
@@ -109,12 +114,14 @@ export default class HomeScreen extends React.Component {
               longitudeDelta: LONGITUDE_DELTA,
             }}
             onLayout={() => {
-              console.log('onLayout', this.state.data);
+              this.onLayoutTimer = setTimeout(() => {
+                this.fitToCoordinates()
+              }, 1500);
             }}
             onRegionChangeComplete={(region) => {
               this.setState({
-                isLoading: true,
-              })
+                region,
+              });
             }}
           >
           {data.map((marker, index) => (
@@ -139,7 +146,9 @@ export default class HomeScreen extends React.Component {
             data={data}
             keyExtractor={(item, index) => item.id}
             renderItem={this.renderItem}
-            ListHeaderComponent={() => <SectionHeader layout="primary" title={`${data.length} APARTMENTS FOR RENT`} style={{ borderTopWidth: 0 }} />}
+            ListHeaderComponent={() => 
+              <SectionHeader layout="primary" title={`${data.length} APARTMENTS FOR RENT`} style={{ borderTopWidth: 0 }} />
+            }
           />
         }
         <MapController

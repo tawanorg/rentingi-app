@@ -7,8 +7,9 @@ import ChatScreen from '../screens/ChatScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import PostScreen from '../screens/PostScreen';
 import Colors from '../constants/Colors';
-
+  
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
@@ -40,18 +41,23 @@ MapStack.navigationOptions = {
 };
 
 const PostStack = createStackNavigator({
-  Settings: SettingsScreen,
+  Post: PostScreen,
+}, {
+  mode: 'modal',
 });
 
-PostStack.navigationOptions = {
-  tabBarLabel: () => null,
-  tabBarIcon: ({ focused }) => (
-    <Icon.Feather
-      name="plus-circle"
-      size={32}
-      color={focused ? '#FFF' : Colors.tintColor}
-    />
-  ),
+PostStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarVisible: false,
+    tabBarLabel: () => null,
+    tabBarIcon: ({ focused }) => (
+      <Icon.Feather
+        name="plus-circle"
+        size={32}
+        color={Colors.highlight}
+      />
+    ),
+  }
 };
 
 const ChatStack = createStackNavigator({

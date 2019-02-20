@@ -4,6 +4,7 @@ export default {
   tintColor,
   tabIconDefault: '#ccc',
   tabIconSelected: tintColor,
+  secondary: '#999',
   backgroundColor: '#f2f7f9',
   backgroundColorBold: '#F1F1F1',
   borderColor: 'rgba(0,0,0,.0975)',
