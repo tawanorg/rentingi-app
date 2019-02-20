@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
+import Colors from '../../constants/Colors';
 
 export default class SearchInput extends React.Component {
   render() {
@@ -21,8 +22,8 @@ export default class SearchInput extends React.Component {
           <TextInput 
             value={value} 
             placeholder="Search for your messages" 
-            style={[styles.searchInput, { color: '#333333' }]}
-            placeholderTextColor={'#CCCCCC'}
+            style={[styles.searchInput, { color: Colors.tintColor }]}
+            placeholderTextColor={'#C9C9C9'}
           />
         ) : (
           <Text style={styles.searchInput}>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F1F1F1',
+    backgroundColor: Colors.backgroundColorBold,
     borderRadius: 30,
     paddingVertical: 8,
     paddingHorizontal: 3,

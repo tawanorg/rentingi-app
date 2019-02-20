@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   chatHeaderTitle: {
-    fontFamily: 'RubikMedium',
+    fontFamily: 'MainMedium',
     color: '#4D4D4D',
     fontSize: 18,
     marginBottom: 5

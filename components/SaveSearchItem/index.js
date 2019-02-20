@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   titleContainer: {
-    borderBottomWidth: 1,
+    borderBottomWidth: .5,
     borderTopWidth: 0,
     borderColor: '#E9E9E9',
     backgroundColor: '#FFFFFF',

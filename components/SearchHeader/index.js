@@ -8,6 +8,7 @@ import {
 import { Icon } from 'expo';
 import SearchInput from '../SearchInput';
 import Header from '../Header';
+import Colors from '../../constants/Colors';
 
 class SearchHeader extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class SearchHeader extends Component {
 
   render() {
     return (
-      <View>
+      <React.Fragment>
         <Header style={styles.headerContainer}>
           <SearchInput style={{ flex: 1 }} />
           <TouchableOpacity onPress={() => null} style={styles.searchFilterButton}>
@@ -34,7 +35,7 @@ class SearchHeader extends Component {
             <Text style={styles.searchSaveButton}>Save</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </React.Fragment>
     );
   }
 }
@@ -46,11 +47,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   searchFilterButton: {
-    borderRadius: 30,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 35 / 2,
-    width: 35,
-    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
@@ -60,14 +56,16 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    borderColor: Colors.borderColor,
+    borderBottomWidth: .5,
   },
   searchResultText: {
     color: '#777777'
   },
   searchSaveButton: {
-    color: '#333',
-    fontFamily: 'RubikMedium',
+    color: Colors.highlight,
+    fontFamily: 'MainMedium',
   }
 })
 

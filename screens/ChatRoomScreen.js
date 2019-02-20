@@ -5,6 +5,7 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import { Icon } from 'expo';
 import { GiftedChat } from 'react-native-gifted-chat'
+import Colors from '../constants/Colors';
 
 export default class ChatScreen extends React.PureComponent {
   state = {
@@ -17,7 +18,7 @@ export default class ChatScreen extends React.PureComponent {
         <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
           <Icon.Feather
             name="chevron-left"
-            color="#333"
+            color={Colors.tintColor}
             size={32}
           />
         </TouchableOpacity>
@@ -27,7 +28,7 @@ export default class ChatScreen extends React.PureComponent {
           </Text>
           <Icon.Octicons
             name="verified"
-            color="#32CD32"
+            color={Colors.success}
             size={22}
           />
         </View>
@@ -35,14 +36,14 @@ export default class ChatScreen extends React.PureComponent {
           <TouchableOpacity onPress={() => null} style={{ marginRight: 20 }}>
             <Icon.Feather
               name="phone"
-              color="#333"
+              color={Colors.tintColor}
               size={24}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => null}>
             <Icon.Feather
               name="info"
-              color="#333"
+              color={Colors.tintColor}
               size={24}
             />
           </TouchableOpacity>
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50
   },
   chatTitle: {
-    fontFamily: 'RubikMedium',
+    fontFamily: 'MainMedium',
     fontSize: 16,
     marginHorizontal: 10,
   },

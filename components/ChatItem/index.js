@@ -6,8 +6,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
-const text = 'Could I do inspection anytime soon? hello? hello there';
+import Colors from '../../constants/Colors';
 
 const ChatItem = ({ id, avatarUrl, name, message, when, style, isNew, onPress }) => (
   <TouchableOpacity style={[styles.chatItemContainer, style, isNew && styles.markAsRead]} onPress={onPress}>
@@ -26,15 +25,13 @@ const ChatItem = ({ id, avatarUrl, name, message, when, style, isNew, onPress })
     </View>
   </TouchableOpacity>
 )
-
-// require('../../assets/images/avatar.png')
-
+ 
 const styles = StyleSheet.create({
   chatItemContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    borderBottomWidth: 1,
+    borderBottomWidth: .5,
     borderColor: '#E9E9E9',
     backgroundColor: '#FFFFFF',
     flex: 1,
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
   },
   buble: {
     position: 'absolute',
-    backgroundColor: '#FF0000',
+    backgroundColor: Colors.highlight,
     width: 10,
     height: 10,
     top: 4,
@@ -65,7 +62,7 @@ const styles = StyleSheet.create({
   },
   chatSenderTitle: {
     fontSize: 14,
-    fontFamily: 'RubikMedium',
+    fontFamily: 'MainMedium',
     color: '#444',
     marginBottom: 5,
   },

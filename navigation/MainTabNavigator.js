@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   alert: {
     position: 'absolute',
-    backgroundColor: '#FF0000',
+    backgroundColor: Colors.highlight,
     color: '#FFF',
     width: 10,
     height: 10,

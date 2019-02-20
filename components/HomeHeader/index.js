@@ -1,15 +1,14 @@
-import { Constants  } from 'expo';
 import React, { Component } from 'react';
-import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Header from '../Header';
-import { getStatusBarHeight } from '../../utils/helper';
+import Colors from '../../constants/Colors';
 
 class HomeHeader extends Component {
   render() {
     return (
       <Header style={styles.container}>
         <Image
-          source={require('../../assets/images/logo.png')}
+          source={require('../../assets/images/logo-v1.png')}
           resizeMode="contain"
           style={styles.logo}
         />
@@ -28,8 +27,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderStyle: 'solid',
     paddingBottom: 5,
-    borderBottomWidth: 1,
-    borderColor: '#E9E9E9',
+    borderBottomWidth: .5,
+    borderColor: Colors.borderColor,
     position: 'relative'
   },
   logo: {
@@ -39,17 +38,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     bottom: 15,
-    backgroundColor: '#E9E9E9',
+    backgroundColor: Colors.backgroundColorBold,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 10
   },
   accountLevelText: {
-    color: '#555',
+    color: '#FFF',
     fontSize: 10
   },
   paidAccount: {
-    backgroundColor: '#FECB28',
+    backgroundColor: Colors.joke,
   }
 });
 

@@ -1,32 +1,39 @@
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import * as React from 'react';
 import { Icon } from 'expo';
+import Colors from '../../constants/Colors';
 
 class MapController extends React.Component {
   render() {
+    const { onPressSearch, onChangeView, isMap, view, isLoading } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.innerContainer}>
-          <TouchableOpacity onPress={() => null} style={styles.button}>
-            <Text style={styles.label}>LIST</Text>
+          <TouchableOpacity onPress={onChangeView} style={styles.button}>
+            <Text style={styles.label}>{view}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => null} style={styles.button}>
-            <Text style={styles.label}>SEARCH THIS AREA</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => null} style={styles.buttonCircle}>
-            <Icon.FontAwesome
-              name="location-arrow"
-              color="#333"
-              style={{
-                position: 'absolute',
-                top: 6,
-                button: 0,
-                left: 9,
-                right: 0,
-              }}
-              size={24}
-            />
-          </TouchableOpacity>
+          {
+            isMap &&
+            <React.Fragment>
+              <TouchableOpacity onPress={onPressSearch} style={styles.button}>
+                <Text style={styles.label}>SEARCH THIS AREA</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => null} style={styles.buttonCircle}>
+                <Icon.FontAwesome
+                  name="location-arrow"
+                  color="#333"
+                  style={{
+                    position: 'absolute',
+                    top: 6,
+                    bottom: 0,
+                    left: 9,
+                    right: 0,
+                  }}
+                  size={24}
+                />
+              </TouchableOpacity>
+            </React.Fragment>
+          }
         </View>
       </View>
     );
@@ -35,9 +42,9 @@ class MapController extends React.Component {
 
 const buttonStyle = {
   borderRadius: 30,
-  backgroundColor: '#FFFDFE',
-  borderWidth: 1,
-  borderColor: '#EAEAEA',
+  backgroundColor: Colors.backgroundColor,
+  borderWidth: .5,
+  borderColor: Colors.borderColor,
   borderStyle: 'solid',
   paddingHorizontal: 20,
   paddingVertical: 10,
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   label: {
-    fontFamily: 'RubikMedium',
+    fontFamily: 'MainMedium',
   },
   button: buttonStyle,
   buttonCircle: {

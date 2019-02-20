@@ -27,10 +27,15 @@ export default class HomeScreen extends React.Component {
       <View styles={styles.container}>
         <SearchInput style={{ margin: 10 }} />
         <SectionList
+          ListHeaderComponent={() => null}
           ListFooterComponent={() => <View style={{ paddingBottom: 60 }} />}
           renderItem={({ item, index, section: { layout } }) => {
-            return layout === 'property' ? (
-              <PropertyItem key={index} style={{ marginTop: 10}} />
+            return layout === 'primary' ? (
+              <PropertyItem 
+                key={index}
+                style={{ marginTop: 10}}
+                photoUrl={`https://loremflickr.com/320/240/house`}
+              />
             ) : <SaveSearchItem key={index} noborder={index === 1} />
           }}
           renderSectionHeader={({ index, section: { title, layout }}) => (
@@ -42,7 +47,7 @@ export default class HomeScreen extends React.Component {
           )}
           sections={[
             { title: 'SAVE SEARCHES', layout: null, data: ['item3', 'item4'] },
-            { title: 'FOUND 2 PERFECT MATACHES', layout: 'property', data: ['item1', 'item2'] },
+            { title: 'FOUND 2 PERFECT MATACHES', layout: 'primary', data: ['item1', 'item2'] },
           ]}
         />
       </View>
@@ -53,10 +58,6 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  cell: {
-    margin: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#FFFFFF'
   },
 });

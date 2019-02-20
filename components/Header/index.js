@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { getStatusBarHeight } from '../../utils/helper';
+import Colors from '../../constants/Colors';
 
 const Header = ({ style, children }) => (
   <View style={[styles.container, style]}>
@@ -13,16 +14,15 @@ const styles = StyleSheet.create({
     paddingVertical: getStatusBarHeight() + 8,
     paddingHorizontal: 10,
     paddingBottom: 10,
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
-    borderColor: '#E9E9E9',
+    borderBottomWidth: .5,
+    borderColor: Colors.borderColor,
     height: getStatusBarHeight() + 55,
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     alignItems: 'center',
   },
   label: {
-    fontFamily: 'RubikMedium',
+    fontFamily: 'MainMedium',
     fontSize: 20,
   },
 });
