@@ -27,8 +27,8 @@ export default class PostScreen extends React.Component {
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
           <View style={{ marginTop: 20, marginHorizontal: 25 }}>
             <PostHeader
-              title={`Let's get you ready to become a host`}
-              subtitle={`Start with the basics`}
+              title={`Get ready to share your house`}
+              subtitle={`Start by creating your listing. It's like a profile page for your place`}
             />
             <PostSection
               step={'1'}
