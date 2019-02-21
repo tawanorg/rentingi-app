@@ -5,7 +5,10 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import ChatItem from '../components/ChatItem';
+import SectionHeader from '../components/SectionHeader';
+import PeopleList from '../components/PeopleList';
 import Colors from '../constants/Colors';
+
 var faker = require('faker');
 
 const DATA = Array.from({ length: 50 }).map((_, i) => ({
@@ -62,9 +65,23 @@ export default class ChatScreen extends React.PureComponent {
         data={DATA}
         extraData={this.state}
         ListHeaderComponent={() => (
-          <View style={{ marginHorizontal: 10, marginTop: 10, marginBottom: 20, flexDirection: 'column' }}>
-            <Text style={styles.chatHeaderTitle}>Chats</Text>
-            <Text style={styles.chatHeaderSubtitle}>You have 3 new messages.</Text>
+          <View>
+            {/* <SectionHeader
+              title={'Keep in touch'}
+              subtitle={'People nearby'}
+              style={{
+                borderTopWidth: 0,
+              }}
+            >
+              <PeopleList />
+            </SectionHeader> */}
+            <SectionHeader
+              title={'Inbox'}
+              subtitle={'You have 3 new messages.'}
+              style={{
+                borderTopWidth: 0,
+              }}
+            />
           </View>
         )}
         keyExtractor={this._keyExtractor}
