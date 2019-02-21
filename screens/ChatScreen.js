@@ -5,6 +5,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 import SearchInput from '../components/SearchInput';
 import ChatItem from '../components/ChatItem';
+import Colors from '../constants/Colors';
 var faker = require('faker');
 
 const DATA = Array.from({ length: 50 }).map((_, i) => ({
@@ -85,12 +86,12 @@ const styles = StyleSheet.create({
   },
   chatHeaderTitle: {
     fontFamily: 'MainMedium',
-    color: '#4D4D4D',
+    color: Colors.tintColor,
     fontSize: 18,
     marginBottom: 5
   },
   chatHeaderSubtitle: {
-    color: '#5D5D5D',
+    color: Colors.secondary,
     fontSize: 14,
   }
 });

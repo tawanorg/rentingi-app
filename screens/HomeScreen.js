@@ -33,21 +33,27 @@ export default class HomeScreen extends React.Component {
             return layout === 'primary' ? (
               <PropertyItem 
                 key={index}
-                style={{ marginTop: 10}}
+                style={{ marginBottom: 10}}
                 photoUrl={`https://loremflickr.com/320/240/house`}
               />
-            ) : <SaveSearchItem key={index} noborder={index === 1} />
+            ) : (
+              <SaveSearchItem 
+                key={index} 
+                noborder={index === 1}
+              />
+            )
           }}
-          renderSectionHeader={({ index, section: { title, layout }}) => (
+          renderSectionHeader={({ index, section: { title, subtitle, layout }}) => (
             <SectionHeader
               key={index}
               title={title}
+              subtitle={subtitle}
               layout={layout}
             />
           )}
           sections={[
-            { title: 'SAVE SEARCHES', layout: null, data: ['item3', 'item4'] },
-            { title: 'FOUND 2 PERFECT MATACHES', layout: 'primary', data: ['item1', 'item2'] },
+            { title: 'Recent Searches', layout: null, data: ['item3', 'item4'] },
+            { title: 'Perfect Matches', subtitle: 'Found properties match you\'re looking for', layout: 'primary', data: ['item1', 'item2'] },
           ]}
         />
       </View>

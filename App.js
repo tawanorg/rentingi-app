@@ -41,8 +41,8 @@ export default class App extends React.Component {
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'Main': require('./assets/fonts/Rubik/Rubik-Regular.ttf'),
-        'MainMedium': require('./assets/fonts/Rubik/Rubik-Medium.ttf'),
+        'Main': require('./assets/fonts/Lato/Lato-Regular.ttf'),
+        'MainMedium': require('./assets/fonts/Lato/Lato-Bold.ttf'),
       }),
     ]);
   };

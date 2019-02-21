@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     borderBottomWidth: .5,
-    borderColor: '#E9E9E9',
+    borderColor: Colors.borderColor,
     backgroundColor: '#FFFFFF',
     flex: 1,
   },
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 10 / 2,
   },
   markAsRead: {
-    backgroundColor: '#F1F1F1',
+    backgroundColor: Colors.backgroundColor,
   },
   chatAvatarImage: {
     height: 50,
@@ -67,11 +67,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   chatMessage: {
-    color: '#777777',
+    color: Colors.tintColor,
   },
   chatTime: {
     fontSize: 10,
-    color: '#AAA',
+    color: Colors.secondary,
     marginTop: 10,
   },
 });

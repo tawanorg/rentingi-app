@@ -5,7 +5,7 @@ import Colors from '../../constants/Colors';
 
 export default class SearchInput extends React.Component {
   render() {
-    const { style, type, value } = this.props;
+    const { style, type, value, children } = this.props;
     const Container = type === 'input' ? View : TouchableOpacity
 
     return (
@@ -18,18 +18,22 @@ export default class SearchInput extends React.Component {
             marginLeft: 10,
           }}
         />
-        {type === 'input' ? (
-          <TextInput 
-            value={value} 
-            placeholder="Search for your messages" 
-            style={[styles.searchInput, { color: Colors.tintColor }]}
-            placeholderTextColor={'#C9C9C9'}
-          />
-        ) : (
-          <Text style={styles.searchInput}>
-            Search for your stay
-          </Text>
-        )}
+        {
+          children ? children : (
+            type === 'input' ? (
+              <TextInput 
+                value={value} 
+                placeholder="Search for your messages" 
+                style={[styles.searchInput, { color: Colors.tintColor }]}
+                placeholderTextColor={Colors.secondary}
+              />
+            ) : (
+              <Text style={styles.searchInput}>
+                Search for your stay
+              </Text>
+            )
+          )
+        }
       </Container>
     );
   }
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 3,
   },
   searchInput: {
-    color: '#CCC',
+    color: Colors.secondary,
     flex: 1,
     marginHorizontal: 10,
   },

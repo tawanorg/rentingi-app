@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { 
   View,
   Text,
@@ -10,35 +11,55 @@ import SearchInput from '../SearchInput';
 import Header from '../Header';
 import Colors from '../../constants/Colors';
 
-class SearchHeader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: 'Private room with shared bath, 170$ per week ' };
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <Header style={styles.headerContainer}>
-          <SearchInput style={{ flex: 1 }} />
+function SearchHeader({ searching }) {
+  return (
+    <Header style={styles.headerContainer}>
+      {!searching ? <SearchInput style={{ flex: 1 }} /> : (
+        <React.Fragment>
+          <TouchableOpacity style={styles.searchContainerResult}>
+            <Icon.FontAwesome
+              name="search"
+              size={18}
+              color={Colors.highlight}
+              style={{
+                marginHorizontal: 10,
+              }}
+            />
+            <View style={styles.searchContainer}>
+              <Text numberOfLines={1} style={styles.searchLocation}>Melbourne & 3 Locations</Text>
+              <View style={styles.searchFilterContainer}>
+                <View style={styles.searchItem}>
+                  <Text style={styles.searchItemText}>
+                    Private Room
+                  </Text>
+                  <View style={styles.searchItemDot} />
+                </View>
+                <View style={styles.searchItem}>
+                  <Text style={styles.searchItemText}>
+                    Shared Bath
+                  </Text>
+                  <View style={styles.searchItemDot} />
+                </View>
+                <View style={styles.searchItem}>
+                  <Text style={styles.searchItemText}>
+                    $140 / W
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => null} style={styles.searchFilterButton}>
             <Icon.AntDesign
               name="filter"
-              color="#333"
+              color={Colors.highlight}
               size={24}
             />
           </TouchableOpacity>
-        </Header>
-        <View style={styles.searchResultContainer}>
-          <Text style={styles.searchResultText}>{this.state.text}</Text>
-          <TouchableOpacity>
-            <Text style={styles.searchSaveButton}>Save</Text>
-          </TouchableOpacity>
-        </View>
-      </React.Fragment>
-    );
-  }
-}
+        </React.Fragment>
+      )}
+    </Header>
+  );
+}; 
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -61,12 +82,55 @@ const styles = StyleSheet.create({
     borderBottomWidth: .5,
   },
   searchResultText: {
-    color: '#777777'
+    color: Colors.secondary
   },
   searchSaveButton: {
     color: Colors.highlight,
     fontFamily: 'MainMedium',
-  }
-})
+  },
+  searchContainer: {
+    flexDirection: 'column',
+  },
+  searchLocation: {
+    fontSize: 14,
+    fontWeight: "400"
+  },
+  searchContainerResult: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  searchFilterContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  searchItem: {
+    position: 'relative',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  searchItemText: {
+    fontSize: 13,
+    color: Colors.tintColor,
+  },
+  searchItemDot: {
+    position: 'relative',
+    width: 5,
+    height: 5,
+    borderRadius: 5 / 2,
+    backgroundColor: Colors.highlight,
+    marginHorizontal: 5
+  },
+});
+
+SearchHeader.propTypes = {
+  searching: PropTypes.bool,
+}
+
+SearchHeader.defaultProps = {
+  searching: false,
+}
 
 export default SearchHeader;

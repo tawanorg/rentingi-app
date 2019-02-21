@@ -22,7 +22,7 @@ const MAP_ICON = require('../assets/images/map-icon.png');
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: props => <SearchHeader {...props} />,
+    header: props => <SearchHeader searching {...props} />,
   };
 
   constructor(props) {
@@ -90,7 +90,7 @@ export default class HomeScreen extends React.Component {
     <PropertyItem
       name={item.name}
       photoUrl={`https://loremflickr.com/320/240/house`}
-      style={{ marginTop: 20 }}
+      style={{ marginBottom: 20 }}
     />
   );
 
@@ -147,7 +147,21 @@ export default class HomeScreen extends React.Component {
             keyExtractor={(item, index) => item.id}
             renderItem={this.renderItem}
             ListHeaderComponent={() => 
-              <SectionHeader layout="primary" title={`${data.length} APARTMENTS FOR RENT`} style={{ borderTopWidth: 0 }} />
+              (
+                <View>
+                  <SectionHeader
+                    layout="primary"  
+                    title={`300 Housemates`}
+                    subtitle="Looking for those area"
+                    style={{ borderTopWidth: 0 }}
+                  />
+                  <SectionHeader
+                    layout="primary"  
+                    title={`${data.length} Properties`}
+                    subtitle="Open for rent in 3 locations"
+                  />
+                </View>
+              )
             }
           />
         }

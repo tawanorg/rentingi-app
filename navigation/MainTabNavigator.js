@@ -88,7 +88,7 @@ ChatStack.navigationOptions = ({ navigation }) => {
           color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
         />
         <View style={styles.alert}>
-          <Text style={{ color: '#FFF', fontSize: 10, }} />
+          <Text style={{ color: '#FFFFFF', fontSize: 10, }} />
         </View>
       </View>
     ),
