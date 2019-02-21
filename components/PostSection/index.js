@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     paddingHorizontal: 30,
-    paddingVertical: 15,
+    paddingVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.highlight,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   buttonLabel: {
     color: '#FFF',
     fontFamily: 'MainMedium',
-    fontSize: 20,
+    fontSize: 15,
   },
   changeText: {
     fontFamily: 'MainMedium',

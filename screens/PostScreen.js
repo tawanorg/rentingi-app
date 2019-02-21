@@ -17,54 +17,70 @@ export default class PostScreen extends React.Component {
             size={32}
           />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={[styles.buttonLabel, { fontSize: 15 }]}>Post</Text>
+        </TouchableOpacity>
       </Header>
     )
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: true,
+    }
+  }
+
   render() {
+    const { disabled } = this.state;
+
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
-          <View style={{ marginTop: 20, marginHorizontal: 25 }}>
-            <PostHeader
-              title={`Get ready to share your house`}
-              subtitle={`Start by creating your listing. It's like a profile page for your place`}
-            />
-            <PostSection
-              step={'1'}
-              title={`Start with the basics`}
-              subtitle={`Location, housemates and more`}
-              isDone={true}
-              style={{
-                marginTop: 20,
-              }}
-            />
-            <PostSection
-              step={'2'}
-              title={`Set the price`}
-              subtitle={`Beds, bathroom, facilities, and more`}
-              isDone={false}
-              style={{
-                marginTop: 20
-              }}
-            />
-            <PostSection
-              step={'3'}
-              title={`Set the scene`}
-              subtitle={`Photos, short description, title`}
-              isDone={false}
-              style={{
-                marginTop: 20
-              }}
-            />
-          </View>
-        </ScrollView>
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
+        <View style={{ marginTop: 20, marginHorizontal: 25 }}>
+          <PostHeader
+            title={`Get ready to share your house`}
+            subtitle={`Start by creating your listing. It's like a profile page for your place`}
+          />
+          <PostSection
+            step={'1'}
+            title={`Start with the basics`}
+            subtitle={`Location, housemates and more`}
+            isDone={true}
+            style={{
+              marginTop: 20,
+            }}
+          />
+          <PostSection
+            step={'2'}
+            title={`Set the price`}
+            subtitle={`Beds, bathroom, facilities, and more`}
+            isDone={false}
+            style={{
+              marginTop: 20
+            }}
+          />
+          <PostSection
+            step={'3'}
+            title={`Set the scene`}
+            subtitle={`Photos, short description, title`}
+            isDone={false}
+            style={{
+              marginTop: 20
+            }}
+          />
+        </View>
         {/* <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonLabel}>NEXT</Text>
+            <Text style={styles.buttonLabel}>Reset</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, disabled && styles.buttonDisabled]} disabled={disabled}>
+            <Text style={styles.buttonLabel}>Post</Text>
           </TouchableOpacity>
         </View> */}
-      </View>
+      </ScrollView>
     );
   }
 
@@ -97,6 +113,10 @@ export default class PostScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   container: {
     flex: 1,
     position: 'relative',
@@ -105,9 +125,12 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     padding: 10,
   },
+  buttonDisabled: {
+    opacity: 0.5
+  },
   button: {
     paddingHorizontal: 30,
-    paddingVertical: 15,
+    paddingVertical: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.highlight,
@@ -117,14 +140,6 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'MainMedium',
     fontSize: 20,
-  },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 40,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    flexDirection: 'row'
   },
   questionTitle: {
     color: Colors.tintColor,
