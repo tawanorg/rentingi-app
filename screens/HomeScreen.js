@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, Image, Text, SectionList, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import HomeHeader from '../components/HomeHeader';
 import SearchInput from '../components/SearchInput';
 import SectionHeader from '../components/SectionHeader';
 import PropertyItem from '../components/PropertyItem';
-import SaveSearchItem from '../components/SaveSearchItem';
+// import SaveSearchItem from '../components/SaveSearchItem';
 import PeopleList from '../components/PeopleList';
+import Colors from '../constants/Colors';
+
+var faker = require('faker');
+
+const DATA = Array.from({ length: 20 }).map((_, i) => i);
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -14,49 +19,49 @@ export default class HomeScreen extends React.Component {
  
   render() {
     return (
-      <View styles={styles.container}>
-        <SearchInput style={{ margin: 10 }} />
-        <SectionHeader
-          title={'Stay connected'}
-          subtitle={'People you\'re connected with'}
-        >
-          <PeopleList />
-        </SectionHeader>
-        <SectionList
+      <View
+        style={styles.container}
+      >
+        <View
           style={{
-            paddingTop: 10
+            borderBottomWidth: .5,
+            borderColor: Colors.borderColor,
           }}
-          stickySectionHeadersEnabled={false}
-          ListHeaderComponent={() => null}
-          ListFooterComponent={() => <View style={{ paddingBottom: 60 }} />}
-          renderItem={({ item, index, section: { layout } }) => {
-            return layout === 'primary' ? (
+        >
+          <SearchInput
+            style={{
+              margin: 10,
+            }}
+          />
+        </View>
+        <ScrollView>
+          <SectionHeader
+            title={'Stay connected'}
+            subtitle={'People you\'re connected with'}
+            style={{
+              borderTopWidth: 0,
+            }}
+          >
+            <PeopleList />
+          </SectionHeader>
+          <SectionHeader
+            title={'Perfect matches'}
+            subtitle={`${DATA.length} houses matches your searches`}
+            style={{
+              borderTopWidth: 0,
+              borderBottomWidth: 0
+            }}
+          />
+          {
+            DATA.map(property => (
               <PropertyItem 
-                key={index}
+                key={property}
                 style={{ marginBottom: 10}}
                 photoUrl={`https://loremflickr.com/320/240/house`}
               />
-            ) : (
-              <SaveSearchItem 
-                key={index} 
-                noborder={index === 1}
-              />
-            )
-          }}
-          renderSectionHeader={({ index, section: { title, subtitle, layout }}) => (
-            <SectionHeader
-              key={index}
-              title={title}
-              subtitle={subtitle}
-              layout={layout}
-              style={{ borderBottomWidth: 0 }}
-            />
-          )}
-          sections={[
-            { title: 'Recent Searches', layout: null, data: [1, 2] },
-            { title: 'Perfect Matches', subtitle: 'Dream houses match you\'re looking for', layout: 'primary', data: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
-          ]}
-        />
+            ))
+          }
+        </ScrollView>
       </View>
     );
   }

@@ -5,7 +5,7 @@ import { Icon, LinearGradient } from 'expo';
 import UserAvatar from '../UserAvatar';
 import Colors from '../../constants/Colors';
 
-const IMAGE_HEIGHT = 200;
+const IMAGE_HEIGHT = 300;
 
 function PropertyItem({ name, style, photoUrl }) {
   return (
