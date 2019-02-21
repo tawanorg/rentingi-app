@@ -58,10 +58,11 @@ const styles = StyleSheet.create({
     right: 0,
   },
   innerContainer: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     paddingVertical: 10,
+    marginHorizontal: 10,
   },
   label: {
     fontFamily: 'MainMedium',

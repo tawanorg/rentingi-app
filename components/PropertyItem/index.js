@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet, Image, TouchableHighlight, ImageBackground } from 'react-native';
 import { Icon, LinearGradient } from 'expo';
+import UserAvatar from '../UserAvatar';
 import Colors from '../../constants/Colors';
 
 const IMAGE_HEIGHT = 200;
@@ -15,12 +16,9 @@ function PropertyItem({ name, style, photoUrl }) {
     >
       <React.Fragment>
         <View style={styles.userContainer}>
-          <View style={styles.userImageContainer}>
-            <Image 
-              style={styles.userAvatarImage} source={{ uri: photoUrl }}
-              resizeMode="cover"
-            />
-          </View>
+          <UserAvatar
+            photoUrl={photoUrl}
+          />
           <View style={styles.userHeader}>
             <Text style={styles.userName} numberOfLines={1}>{name}</Text>
             <Text style={styles.userLocation}>Little Bourke St, Melbourne</Text>
@@ -103,10 +101,12 @@ function PropertyItem({ name, style, photoUrl }) {
 
 PropertyItem.propTypes = {
   style: PropTypes.object,
+  name: PropTypes.string,
 }
 
 PropertyItem.defaultProps = {
   style: null,
+  name: 'Tim Sample',
 }
 
 const styles = StyleSheet.create({
@@ -185,15 +185,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 10,
   },
-  userImageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },  
-  userAvatarImage: {
-    width: 40,
-    height: 40,
-    borderRadius: 40 / 2
-  },  
   userHeader: {
     paddingHorizontal: 10,
     flex: 1,

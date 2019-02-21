@@ -11,6 +11,7 @@ import SearchHeader from '../components/SearchHeader';
 import MapController from '../components/MapController';
 import PropertyItem from '../components/PropertyItem';
 import SectionHeader from '../components/SectionHeader';
+import PeopleList from '../components/PeopleList';
 
 const { Marker } = MapView;
 let { width, height } = Dimensions.get('window')
@@ -31,7 +32,7 @@ export default class HomeScreen extends React.Component {
     this.onLayoutTimer = null;
     this.state = {
       isLoading: false,
-      isLayoutMap: true,
+      isLayoutMap: false,
       data: [],
       region: null,
     };
@@ -153,12 +154,15 @@ export default class HomeScreen extends React.Component {
                     layout="primary"  
                     title={`300 Housemates`}
                     subtitle="Looking for those area"
-                    style={{ borderTopWidth: 0 }}
-                  />
+                    style={{ borderTopWidth: 0, borderBottomWidth: 0 }}
+                  >
+                    <PeopleList />
+                  </SectionHeader>
                   <SectionHeader
                     layout="primary"  
                     title={`${data.length} Properties`}
                     subtitle="Open for rent in 3 locations"
+                    style={{ borderBottomWidth: 0 }}
                   />
                 </View>
               )

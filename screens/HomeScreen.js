@@ -5,28 +5,28 @@ import SearchInput from '../components/SearchInput';
 import SectionHeader from '../components/SectionHeader';
 import PropertyItem from '../components/PropertyItem';
 import SaveSearchItem from '../components/SaveSearchItem';
+import PeopleList from '../components/PeopleList';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: <HomeHeader />,
   };
-
-  state = { isRefreshing: false };
-
-  _refreshRequest = () => {
-    this.setState({ isRefreshing: true });
-    setTimeout(() => {
-      this.setState({ isRefreshing: false });
-    }, 1000);
-  };
-
-  overrideRenderItem = ({ item, index, section: { title, data } }) => <Text key={index}>Override{item}</Text>
-
+ 
   render() {
     return (
       <View styles={styles.container}>
         <SearchInput style={{ margin: 10 }} />
+        <SectionHeader
+          title={'Stay connected'}
+          subtitle={'People you\'re connected with'}
+        >
+          <PeopleList />
+        </SectionHeader>
         <SectionList
+          style={{
+            paddingTop: 10
+          }}
+          stickySectionHeadersEnabled={false}
           ListHeaderComponent={() => null}
           ListFooterComponent={() => <View style={{ paddingBottom: 60 }} />}
           renderItem={({ item, index, section: { layout } }) => {
@@ -49,11 +49,12 @@ export default class HomeScreen extends React.Component {
               title={title}
               subtitle={subtitle}
               layout={layout}
+              style={{ borderBottomWidth: 0 }}
             />
           )}
           sections={[
-            { title: 'Recent Searches', layout: null, data: ['item3', 'item4'] },
-            { title: 'Perfect Matches', subtitle: 'Found properties match you\'re looking for', layout: 'primary', data: ['item1', 'item2'] },
+            { title: 'Recent Searches', layout: null, data: [1, 2] },
+            { title: 'Perfect Matches', subtitle: 'Dream houses match you\'re looking for', layout: 'primary', data: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
           ]}
         />
       </View>
