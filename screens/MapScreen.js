@@ -149,7 +149,7 @@ export default class HomeScreen extends React.Component {
             renderItem={this.renderItem}
             ListHeaderComponent={() => 
               (
-                <View>
+                <React.Fragment>
                   <SectionHeader
                     layout="primary"  
                     title={`300 Housemates`}
@@ -164,7 +164,7 @@ export default class HomeScreen extends React.Component {
                     subtitle="Open for rent in 3 locations"
                     style={{ borderBottomWidth: 0 }}
                   />
-                </View>
+                </React.Fragment>
               )
             }
           />

@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   changeText: {
     fontFamily: 'MainMedium',
     color: Colors.highlight,
-    fontSize: 20,
+    fontSize: 16,
     paddingTop: 10
   },
   doneButton: {
