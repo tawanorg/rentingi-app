@@ -8,6 +8,10 @@ import ChatRoomScreen from '../screens/ChatRoomScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import PostScreen from '../screens/PostScreen';
+import PostScreenStepOne from '../screens/PostScreen/PostScreenStepOne';
+import PostScreenStepThree from '../screens/PostScreen/PostScreenStepThree';
+import PostScreenStepTwo from '../screens/PostScreen/PostScreenStepTwo';
+
 import Colors from '../constants/Colors';
   
 const HomeStack = createStackNavigator({
@@ -42,6 +46,9 @@ MapStack.navigationOptions = {
 
 const PostStack = createStackNavigator({
   Post: PostScreen,
+  PostStepOne: PostScreenStepOne,
+  PostStepTwo: PostScreenStepTwo,
+  PostStepThree: PostScreenStepThree,
 }, {
   mode: 'modal',
 });
