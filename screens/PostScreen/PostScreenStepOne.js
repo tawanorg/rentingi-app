@@ -5,6 +5,7 @@ import PostHomeHeader from '../../components/PostHomeHeader';
 import PostTag from '../../components/PostTag';
 import Colors from '../../constants/Colors';
 import SearchInput from '../../components/SearchInput';
+import SelectOption from '../../components/SelectOption';
 
 const FACILITIES = [
   "Garden / courtyard",
@@ -15,16 +16,14 @@ const FACILITIES = [
 ]
 
 const PROPERTY_NUMBERS_OF = {
-  BEDROOMS: 'Number of bedrooms?',
-  BATHROOMS: 'Number of bathrooms?',
-  PARKING: 'Number of parking?',
-  HOUSEMATES: 'Number of housemates?',
+  BEDROOMS: 'Bedrooms?',
+  BATHROOMS: 'Bathrooms?',
+  PARKING: 'Parking?',
+  HOUSEMATES: 'Housemates?',
 }
 
-const RangeCircle = ({ children }) => (
-  <View style={styles.rangeCirlce}>
-    <Text style={styles.rangeCircleText}>{children}</Text>
-  </View>
+const Divider = () => (
+  <View style={{ borderTopWidth: .5, borderColor: Colors.borderColor, marginVertical: 20 }} />
 )
 
 export default class PostScreenOne extends React.Component {
@@ -32,65 +31,73 @@ export default class PostScreenOne extends React.Component {
     header: ({ navigation }) => (
       <PostHomeHeader navigation={navigation} />
     )
-  }; 
+  };
+
+  state = {
+    number: 1,
+  }
+
+  increase() {
+    this.setState((prevState) => ({
+      number: prevState.number + 1
+    }))
+  }
+
+  decrease() {
+    this.setState((prevState) => ({
+      number: prevState.number - 1
+    }))
+  }
  
   render() {
+    const { number } = this.state;
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainerStyle}>
         <PostHeader title={`Start with the basics`} />
-        <View>
-          <PostHeader subtitle={`Where is it located?`} />
-          <View style={{ marginVertical: 10, flexDirection: 'column'  }}>
-            <SearchInput placeholder="Search for your property location" />
-            <Text style={styles.locationSelectedText}>8 Grosvenor Street, Abbotsford, VIC, 3067</Text>
-          </View>
+        <PostHeader subtitle={`Where is it located?`} />
+        <View style={{ marginVertical: 20, flexDirection: 'column'  }}>
+          <SearchInput placeholder="Search for your property location" />
+          <Text style={styles.locationSelectedText}>8 Grosvenor Street, Abbotsford, VIC, 3067</Text>
         </View>
-        <View>
-          <PostHeader subtitle={`What type of property is this?`} />
-          <View style={{ marginVertical: 10, flexDirection: 'row', flexWrap: 'wrap'  }}>
-            <PostTag
-              name="Apartment / Unit"
-              style={{ flex: 1, marginRight: 5 }}
-              selected
-            />
-            <PostTag 
-              name="House / Townhouse"
-              style={{ flex: 1, marginLeft: 5 }}
-            />
-          </View>
+        <Divider />
+        <PostHeader subtitle={`What type of property is this?`} />
+        <View style={{ marginVertical: 20, flexDirection: 'row', flexWrap: 'wrap'  }}>
+          <PostTag
+            name="Apartment / Unit"
+            style={{ flex: 1, marginRight: 5 }}
+            selected
+          />
+          <PostTag 
+            name="House / Townhouse"
+            style={{ flex: 1, marginLeft: 5 }}
+          />
         </View>
+        <Divider />
         {
           Object.keys(PROPERTY_NUMBERS_OF).map((key) => (
-            <View style={{ marginVertical: 20 }}>
-              <PostHeader subtitle={PROPERTY_NUMBERS_OF[key]} />
-              <Slider
-                step={1} 
-                maximumValue={5} 
-                minimumValue={1} 
-                value={1}
-              />
-               <View style={styles.rangeContainer}>
-              {['1', '2', '3', '4', '5+'].map((index, key) => (
-                <RangeCircle key={key}>{index}</RangeCircle>
-              ))}
-              </View>
-            </View>
+            <SelectOption 
+              title={PROPERTY_NUMBERS_OF[key]}
+              style={{ marginBottom: 10 }}
+              number={number}
+              onMinus={() => this.decrease()}
+              onPlus={() => this.increase()}
+            />
           ))
         }
-        <View style={{ marginVertical: 20 }}>
-          <PostHeader subtitle={`What will housemates have?`} />
-          <View style={{ marginVertical: 20, flexDirection: 'column'  }}>
-          {
-            FACILITIES.map((facility, key) => (
-              <PostTag
-                key={key}
-                name={facility}
-                style={{ height: 50, flex: 1, marginBottom: 10 }}
-              />
-            ))
-          }
-          </View>
+        <Divider />
+        <PostHeader subtitle={`What will housemates have?`} />
+        <View style={{ marginVertical: 10, flexDirection: 'column'  }}>
+        {
+          FACILITIES.map((facility, key) => (
+            <PostTag
+              key={key}
+              name={facility}
+              style={{ height: 50, flex: 1, marginBottom: 10 }}
+            />
+          ))
+        }
         </View>
+        <View style={{ marginBottom: 50 }} />
       </ScrollView>
     )
   }
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
     fontFamily: 'MainMedium',
     fontSize: 18,
     color: Colors.highlight,
-    marginVertical: 10,
+    marginTop: 10,
   },
   rangeContainer: {
     flexDirection: 'row',

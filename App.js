@@ -36,6 +36,7 @@ export default class App extends React.Component {
         require('./assets/images/icon.png'),
         require('./assets/images/logo.png'),
         require('./assets/images/logo-v1.png'),
+        require('./assets/images/logo-v2.png'),
         require('./assets/images/map-icon.png'),
       ]),
       Font.loadAsync({

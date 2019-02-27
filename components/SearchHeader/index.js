@@ -11,7 +11,7 @@ import SearchInput from '../SearchInput';
 import Header from '../Header';
 import Colors from '../../constants/Colors';
 
-function SearchHeader({ searching }) {
+function SearchHeader({ searching, searchLocation, searchFilters }) {
   return (
     <Header style={styles.headerContainer}>
       {!searching ? <SearchInput style={{ flex: 1 }} /> : (
@@ -22,7 +22,7 @@ function SearchHeader({ searching }) {
               size={18}
               color={Colors.highlight}
               style={{
-                marginHorizontal: 10,
+                marginRight: 10,
               }}
             />
             <View style={styles.searchContainer}>

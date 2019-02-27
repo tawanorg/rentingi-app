@@ -76,6 +76,20 @@ export default class PostScreenTwo extends React.Component {
   renderItem() {
     return (
       <React.Fragment>
+        <Text style={styles.optionTitle}>Price (Per week)</Text>
+        <View style={styles.optionContainer}>
+          <TextInput
+            style={styles.priceInput}
+            placeholder="Price"
+            value={`$170`}
+            onChangeText={(text) => this.setState({text})}
+            keyboardType="numeric"
+          />
+          <PostTag 
+            name="Open for offer"
+            style={{ flex: 1, height: 70 }}
+          />
+        </View>
         <Text style={styles.optionTitle}>Bedroom</Text>
         <View style={styles.optionContainer}>
           <PostTag
@@ -113,20 +127,6 @@ export default class PostScreenTwo extends React.Component {
           />
           <PostTag 
             name="Included Partially"
-            style={{ flex: 1, height: 70 }}
-          />
-        </View>
-        <Text style={styles.optionTitle}>Price (Per week)</Text>
-        <View style={styles.optionContainer}>
-          <TextInput
-            style={styles.priceInput}
-            placeholder="Price"
-            value={`$170`}
-            onChangeText={(text) => this.setState({text})}
-            keyboardType="numeric"
-          />
-          <PostTag 
-            name="Open for offer"
             style={{ flex: 1, height: 70 }}
           />
         </View>

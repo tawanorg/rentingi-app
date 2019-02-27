@@ -64,26 +64,6 @@ export default class ChatScreen extends React.PureComponent {
         style={styles.container}
         data={DATA}
         extraData={this.state}
-        ListHeaderComponent={() => (
-          <View>
-            {/* <SectionHeader
-              title={'Keep in touch'}
-              subtitle={'People nearby'}
-              style={{
-                borderTopWidth: 0,
-              }}
-            >
-              <PeopleList />
-            </SectionHeader> */}
-            <SectionHeader
-              title={'Inbox'}
-              subtitle={'You have 3 new messages.'}
-              style={{
-                borderTopWidth: 0,
-              }}
-            />
-          </View>
-        )}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
       />

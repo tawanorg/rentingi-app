@@ -7,8 +7,8 @@ const PostTag = ({ name, selected, style }) => {
   return (
     <TouchableOpacity style={[styles.container, selected && styles.selected, style]}>
       <Text style={[styles.title, selected && styles.selectedText]}>{name}</Text>
-      <Icon.Ionicons
-        name={selected ? 'ios-checkmark-circle' : 'ios-checkmark-circle-outline'}
+      <Icon.MaterialCommunityIcons
+        name={selected ? 'check-circle' : 'check-circle-outline'}
         size={26}
         color={selected ? Colors.highlight : Colors.tabIconDefault}
         style={styles.icon}
@@ -19,12 +19,12 @@ const PostTag = ({ name, selected, style }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
+    height: 60,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 13,
     borderColor: Colors.borderColor,
     backgroundColor: Colors.backgroundColor,
     position: 'relative'
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    top: -0.5,
-    right: 1,
+    top: -10,
+    right: -6,
   }
 })
 

@@ -152,15 +152,15 @@ export default class HomeScreen extends React.Component {
                 <React.Fragment>
                   <SectionHeader
                     layout="primary"  
-                    title={`300 Housemates`}
-                    subtitle="Looking for those area"
+                    title={`People`}
+                    subtitle="Actively looking for room"
                     style={{ borderTopWidth: 0, borderBottomWidth: 0 }}
                   >
                     <PeopleList />
                   </SectionHeader>
                   <SectionHeader
                     layout="primary"  
-                    title={`${data.length} Properties`}
+                    title={`${data.length} rooms`}
                     subtitle="Open for rent in 3 locations"
                     style={{ borderBottomWidth: 0 }}
                   />

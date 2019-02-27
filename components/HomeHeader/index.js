@@ -8,7 +8,7 @@ class HomeHeader extends Component {
     return (
       <Header style={styles.container}>
         <Image
-          source={require('../../assets/images/logo-v1.png')}
+          source={require('../../assets/images/logo-v2.png')}
           resizeMode="contain"
           style={styles.logo}
         />
