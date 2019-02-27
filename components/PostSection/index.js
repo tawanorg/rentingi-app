@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Colors from '../../constants/Colors';
 import { Icon } from 'expo';
+import Colors from '../../constants/Colors';
+import Button from '../Button';
 
-function PostSection({ step, title, subtitle, style, isDone }) {
+function PostSection({ step, title, subtitle, style, isDone, onPress }) {
   return (
     <View style={[styles.container, style]}>
       <View style={styles.content}>
@@ -14,13 +15,11 @@ function PostSection({ step, title, subtitle, style, isDone }) {
         <Text style={styles.subtitle}>{subtitle}</Text>
         {
           isDone ? (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPress}>
               <Text style={styles.changeText}>Change</Text>
             </TouchableOpacity>
           ) : 
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonLabel}>Continue</Text>
-          </TouchableOpacity>
+          <Button onPress={onPress} style={{ marginTop: 10 }}>Continue</Button>
         }
       </View>
       {
@@ -69,20 +68,6 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: 'Main',
     fontSize: 14,
-  },
-  button: {
-    marginTop: 10,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.highlight,
-    borderRadius: 30
-  },
-  buttonLabel: {
-    color: '#FFF',
-    fontFamily: 'MainMedium',
-    fontSize: 15,
   },
   changeText: {
     fontFamily: 'MainMedium',

@@ -4,11 +4,11 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
-function PostHeader({ title, subtitle }) {
+function PostHeader({ title, subtitle, style }) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+    <View style={[styles.container, style]}>
+      { title && <Text style={styles.title}>{title}</Text>}
+      { subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
   );
 };

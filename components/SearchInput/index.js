@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'expo';
 import Colors from '../../constants/Colors';
 
 export default class SearchInput extends React.Component {
   render() {
-    const { style, type, value, children } = this.props;
+    const { style, type, value, children, placeholder } = this.props;
     const Container = type === 'input' ? View : TouchableOpacity
 
     return (
@@ -23,13 +24,13 @@ export default class SearchInput extends React.Component {
             type === 'input' ? (
               <TextInput 
                 value={value} 
-                placeholder="Search for your messages" 
+                placeholder={placeholder} 
                 style={[styles.searchInput, { color: Colors.tintColor }]}
                 placeholderTextColor={Colors.secondary}
               />
             ) : (
               <Text style={styles.searchInput}>
-                Search for your stay
+                {placeholder}
               </Text>
             )
           )
@@ -54,3 +55,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 });
+
+SearchInput.propTypes = {
+  placeholder: PropTypes.string,
+}
+
+SearchInput.defaultProps = {
+  placeholder: 'Search...',
+}
